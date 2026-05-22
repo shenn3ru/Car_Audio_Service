@@ -1,0 +1,76 @@
+.footer {
+  background: var(--bg-secondary);
+  border-top: 1px solid var(--border);
+  margin-top: auto;
+}
+.footer-inner {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1.5fr 1.2fr;
+  gap: 40px;
+  padding-top: 56px;
+  padding-bottom: 40px;
+}
+.footer-logo {
+  font-family: 'Rajdhani', sans-serif;
+  font-size: 1.3rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin-bottom: 12px;
+}
+.footer-logo span { color: var(--accent); }
+.footer-brand p {
+  color: var(--text-secondary);
+  font-size: 0.9rem;
+  line-height: 1.6;
+  margin-bottom: 20px;
+}
+.footer-socials { display: flex; gap: 10px; }
+.social-link {
+  width: 36px; height: 36px;
+  border-radius: 4px;
+  display: flex; align-items: center; justify-content: center;
+  font-weight: 700; font-size: 0.9rem;
+  text-decoration: none;
+  transition: transform 0.2s, opacity 0.2s;
+}
+.social-link:hover { transform: translateY(-3px); opacity: 0.85; }
+.social-link.fb { background: #1877f2; color: #fff; }
+.social-link.ig { background: linear-gradient(45deg,#f09433,#e6683c,#dc2743,#cc2366,#bc1888); color: #fff; }
+.social-link.tg { background: #0088cc; color: #fff; }
+.social-link.wa { background: #25d366; color: #fff; }
+
+.footer-nav, .footer-contact, .footer-hours { display: flex; flex-direction: column; gap: 10px; }
+.footer-nav h4, .footer-contact h4, .footer-hours h4 {
+  font-family: 'Rajdhani', sans-serif;
+  font-size: 1rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--accent);
+  margin-bottom: 4px;
+}
+.footer-nav a {
+  color: var(--text-secondary);
+  text-decoration: none;
+  font-size: 0.9rem;
+  transition: color 0.2s;
+}
+.footer-nav a:hover { color: var(--text-primary); }
+.footer-contact p, .footer-hours p {
+  color: var(--text-secondary);
+  font-size: 0.9rem;
+}
+.footer-hours strong { color: var(--text-primary); }
+
+.footer-bottom {
+  border-top: 1px solid var(--border);
+  padding: 16px 0;
+}
+.footer-bottom p { color: var(--text-muted); font-size: 0.85rem; text-align: center; }
+
+@media (max-width: 900px) {
+  .footer-inner { grid-template-columns: 1fr 1fr; }
+}
+@media (max-width: 600px) {
+  .footer-inner { grid-template-columns: 1fr; gap: 28px; }
+}

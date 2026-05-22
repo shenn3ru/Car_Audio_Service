@@ -1,8 +1,8 @@
 import { initializeApp } from "firebase/app";
 import { getFirestore } from "firebase/firestore";
-
+import { getAuth } from 'firebase/auth';
 const firebaseConfig = {
-  apiKey: "AIzaSyApbPEKAGJ484J9wJkFSUgiynaJcr_JOJs",
+  apiKey: "AIzaSyApbPEKAGJ484J9wJkFSUGiynaJcr_JOJs",
   authDomain: "car-audio-service.firebaseapp.com",
   projectId: "car-audio-service",
   storageBucket: "car-audio-service.firebasestorage.app",
@@ -13,6 +13,7 @@ const firebaseConfig = {
 
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
-
+export const auth = getAuth(app);
 // Export the database instance
 export const db = getFirestore(app);
+export default app;
