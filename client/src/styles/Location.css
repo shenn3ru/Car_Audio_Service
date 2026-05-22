@@ -1,0 +1,59 @@
+.location-grid {
+  display: grid;
+  grid-template-columns: 320px 1fr;
+  gap: 32px;
+  align-items: start;
+}
+.location-info { display: flex; flex-direction: column; gap: 16px; }
+.info-card {
+  padding: 20px 24px;
+}
+.info-card h3 {
+  font-size: 1rem;
+  color: var(--text-primary);
+  line-height: 1.4;
+}
+.info-card h4 {
+  font-family: 'Rajdhani', sans-serif;
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--accent);
+  margin-bottom: 8px;
+}
+.info-card p { color: var(--text-secondary); font-size: 0.9rem; margin-bottom: 4px; }
+.info-card a { color: var(--text-primary); text-decoration: none; transition: color 0.2s; }
+.info-card a:hover { color: var(--accent); }
+
+.hours-card .hours-row {
+  display: flex; justify-content: space-between;
+  padding: 8px 0;
+  border-bottom: 1px solid var(--border);
+  color: var(--text-secondary); font-size: 0.9rem;
+}
+.hours-card .hours-row:last-child { border-bottom: none; }
+.hours-card .hours-row strong { color: var(--text-primary); }
+.hours-card .hours-row.closed strong { color: var(--red); }
+
+.location-main { display: flex; flex-direction: column; gap: 24px; }
+.map-container {
+  border-radius: 8px;
+  overflow: hidden;
+  border: 1px solid var(--border);
+}
+.contact-form-card { padding: 28px 32px; }
+.contact-form-card h3 {
+  font-size: 1.4rem;
+  margin-bottom: 20px;
+  color: var(--text-primary);
+}
+.success-msg {
+  color: var(--green);
+  font-size: 1.05rem;
+  padding: 20px 0;
+  font-weight: 500;
+}
+
+@media (max-width: 900px) {
+  .location-grid { grid-template-columns: 1fr; }
+}

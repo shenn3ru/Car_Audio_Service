@@ -1,0 +1,100 @@
+.page-header {
+  background: var(--bg-secondary);
+  border-bottom: 1px solid var(--border);
+  padding: 60px 0 40px;
+}
+.page-header-content { text-align: center; }
+.page-header-content h1 {
+  font-size: clamp(2rem, 5vw, 3.5rem);
+  color: var(--text-primary);
+  margin-bottom: 12px;
+}
+.page-header-content p { color: var(--text-secondary); font-size: 1.1rem; max-width: 600px; margin: 0 auto 12px; }
+
+.services-page-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 28px;
+}
+
+.service-full-card {
+  padding: 28px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  border-top: 3px solid var(--c, var(--accent));
+}
+.service-full-card:hover { border-color: var(--c, var(--accent)); }
+
+.sfc-header { display: flex; align-items: flex-start; gap: 16px; }
+.sfc-icon { font-size: 2.4rem; flex-shrink: 0; }
+.sfc-header h3 { font-size: 1.2rem; color: var(--text-primary); margin-bottom: 4px; }
+.sfc-price { color: var(--text-secondary); font-size: 0.9rem; }
+.sfc-price strong { color: var(--c, var(--accent)); }
+
+.sfc-desc { color: var(--text-secondary); font-size: 0.9rem; line-height: 1.6; }
+
+.sfc-features { list-style: none; display: flex; flex-direction: column; gap: 8px; flex: 1; }
+.sfc-features li {
+  display: flex; align-items: flex-start; gap: 8px;
+  color: var(--text-secondary); font-size: 0.875rem;
+}
+.check { color: var(--c, var(--accent)); font-weight: 700; flex-shrink: 0; }
+
+.sfc-meta {
+  display: flex; gap: 16px;
+  padding: 12px 0;
+  border-top: 1px solid var(--border);
+  color: var(--text-muted);
+  font-size: 0.85rem;
+}
+
+.brands-section {
+  background: var(--bg-secondary);
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+  padding: 40px 0;
+}
+.brands-section h3 {
+  text-align: center;
+  font-family: 'Rajdhani', sans-serif;
+  font-size: 1.1rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--text-secondary);
+  margin-bottom: 20px;
+}
+.brands-list {
+  display: flex; flex-wrap: wrap; gap: 10px; justify-content: center;
+}
+.brand-tag {
+  padding: 6px 16px;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  font-family: 'Rajdhani', sans-serif;
+  font-weight: 600;
+  font-size: 0.9rem;
+  color: var(--text-secondary);
+  letter-spacing: 0.04em;
+  transition: all 0.2s;
+}
+.brand-tag:hover { border-color: var(--accent); color: var(--accent); }
+
+.contact-cta-box {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 48px;
+  text-align: center;
+}
+.contact-cta-box h2 { font-size: 2rem; margin-bottom: 12px; }
+.contact-cta-box p { color: var(--text-secondary); margin-bottom: 28px; font-size: 1.05rem; }
+
+@media (max-width: 900px) {
+  .services-page-grid { grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 600px) {
+  .services-page-grid { grid-template-columns: 1fr; }
+  .contact-cta-box { padding: 32px 20px; }
+}
