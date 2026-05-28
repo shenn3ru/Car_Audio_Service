@@ -21,7 +21,7 @@ export default function Footer() {
         </div>
 
         <div className="footer-nav">
-          <h4>Navigation</h4>
+          <h4>{t.common.navigation}</h4>
           <Link to="/">{t.nav.home}</Link>
           <Link to="/services">{t.nav.services}</Link>
           <Link to="/about">{t.nav.about}</Link>
@@ -30,7 +30,7 @@ export default function Footer() {
         </div>
 
         <div className="footer-contact">
-          <h4>Contact</h4>
+          <h4>{t.common.contact}</h4>
           <p>+373 67 571 810</p>
           <p>+373 76 051 625</p>
           <p>+373 69 826 699</p>
@@ -47,7 +47,7 @@ export default function Footer() {
       </div>
       <div className="footer-bottom">
         <div className="container">
-          <p>© 2026 Car Audio Service. Toate drepturile rezervate.</p>
+          <p>© 2026 Car Audio Service. {t.common.allRights}</p>
         </div>
       </div>
     </footer>

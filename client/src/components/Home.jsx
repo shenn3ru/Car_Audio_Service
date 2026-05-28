@@ -4,17 +4,10 @@ import { useLang } from '../context/LangContext';
 import '../styles/Home.css';
 
 const slides = [
-  { bg: 'https://images.unsplash.com/photo-1546707539-a1b87e3f79de?w=1600&q=80', key: 'hero1' },
-  { bg: 'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=1600&q=80', key: 'hero2' },
-  { bg: 'https://images.unsplash.com/photo-1494976388531-d1058494cdd8?w=1600&q=80', key: 'hero3' },
-  { bg: 'https://images.unsplash.com/photo-1549399542-7e3f8b79c341?w=1600&q=80', key: 'hero4' },
-];
-
-const stats = [
-  { value: '20+', key: 'years' },
-  { value: '5000+', key: 'clients' },
-  { value: '12 luni', key: 'warranty' },
-  { value: '50+', key: 'brands' },
+  { bg: 'https://autoimage.capitalone.com/cms/Auto/assets/images/2772-hero-5-things-that-made-interiors-better.jpg', key: 'hero1' },
+  { bg: 'https://i.pinimg.com/1200x/3b/fc/a8/3bfca87e35932d6f7af3a95d4fb7669b.jpg', key: 'hero2' },
+  { bg: 'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=1600&q=80', key: 'hero3' },
+  { bg: 'https://images.unsplash.com/photo-1494976388531-d1058494cdd8?w=1600&q=80', key: 'hero4' },
 ];
 
 const featuredServices = [
@@ -68,20 +61,6 @@ export default function Home() {
         </div>
       </section>
 
-      {/* STATS */}
-      <section className="stats-bar">
-        <div className="container">
-          <div className="stats-grid">
-            {stats.map((s, i) => (
-              <div key={i} className="stat-item fade-up" style={{ animationDelay: `${i * 0.1}s` }}>
-                <span className="stat-value">{s.value}</span>
-                <span className="stat-label">{t.home[s.key]}</span>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
       {/* WHY US */}
       <section className="section why-us">
         <div className="container">
@@ -90,17 +69,10 @@ export default function Home() {
             <span className="accent-line" />
           </div>
           <div className="features-grid">
-            {[
-              { title: '20+ ani experiență', desc: 'Tehnicieni certificați cu experiență vastă în toate mărcile premium' },
-              { title: 'Serviciu rapid', desc: 'De regulă rezolvăm problema ta în aceeași zi, fără așteptare' },
-              { title: 'Garanție 3-12 luni', desc: 'Garanție completă la toate lucrările și piesele montate' },
-              { title: 'Prețuri corecte', desc: 'Transparență totală — diagnoză gratuită, fără costuri ascunse' },
-              { title: 'Piese originale', desc: 'Utilizăm exclusiv piese originale și certificate OEM' },
-              { title: 'Support 24/7', desc: 'Disponibili pe WhatsApp și Telegram pentru orice întrebare' },
-            ].map((f, i) => (
-              <div key={i} className="feature-card card fade-up" style={{ animationDelay: `${i * 0.1}s` }}>
-                <h3>{f.title}</h3>
-                <p>{f.desc}</p>
+            {['exp', 'diag', 'warranty', 'db', 'equip', 'corp'].map((key, i) => (
+              <div key={key} className="feature-card card fade-up" style={{ animationDelay: `${i * 0.1}s` }}>
+                <h3>{t.features[key]}</h3>
+                <p>{t.features[key + 'Desc']}</p>
               </div>
             ))}
           </div>
@@ -133,8 +105,8 @@ export default function Home() {
       <section className="cta-banner">
         <div className="container">
           <div className="cta-content">
-            <h2>Programează-te acum</h2>
-            <p>Contactează-ne și rezolvăm problema ta auto rapid și profesional</p>
+            <h2>{t.cta.title}</h2>
+            <p>{t.cta.desc}</p>
             <div className="cta-actions">
               <Link to="/location" className="btn btn-primary">{t.home.bookNow}</Link>
               <a href="tel:+37367571810" className="btn btn-outline">+373 67 571 810</a>

@@ -25,20 +25,23 @@ const translations = {
     services: {
       title: 'Serviciile noastre',
       subtitle: 'Oferim soluții complete pentru sistemele audio și multimedia ale mașinii tale',
-      multimedia: 'Multimedia Auto',
-      multimediaDesc: 'Instalare și reparații sisteme multimedia, navigație GPS, ecrane tactile',
-      audio: 'Audio Auto',
-      audioDesc: 'Reparații difuzoare, amplificatoare, subwoofere, sisteme premium',
-      electronic: 'Electronică Auto',
-      electronicDesc: 'Diagnosticare și reparații module electronice, CAN bus, interfețe',
-      carplay: 'CarPlay & Android Auto',
-      carplayDesc: 'Instalare CarPlay wireless, Android Auto, mirrorlink',
-      oem: 'Premium OEM',
-      oemDesc: 'Upgrade sisteme originale BMW, Audi, Mercedes cu componente OEM',
-      accessories: 'Accesorii',
-      accessoriesDesc: 'Camere parcare, senzori, dash cam, alarme auto',
+      multimedia: 'Reparații unități & multimedia',
+      multimediaDesc: 'Reparații unități radio, head unit, display-uri, touchscreen și panouri de comandă',
+      audio: 'Reparații amplificatoare audio',
+      audioDesc: 'Reparații amplificatoare auto, difuzoare și sisteme audio de toate tipurile',
+      electronic: 'Electronică & diagnosticare',
+      electronicDesc: 'Diagnosticare și reparații module electronice, CAN bus, ECU/BCM',
+      carplay: 'Sisteme VW/Skoda/Seat MIB',
+      carplayDesc: 'Recuperare software MIB, înlocuire touchscreen, actualizare hărți, CarPlay/Android Auto',
+      oem: 'Porsche PCM & Premium',
+      oemDesc: 'Reparații Porsche PCM, sisteme BMW/Audi/Mercedes și actualizări firmware premium',
+      accessories: 'Android Auto & Firmware',
+      accessoriesDesc: 'Reparații stereo Android/Windows, firmware Kia/Hyundai, DVD/Blu-ray și televizoare auto',
       bookService: 'Programează-te',
-      learnMore: 'Află mai mult'
+      learnMore: 'Află mai mult',
+      brandsTitle: 'Mărci auto deservite',
+      ctaTitle: 'Nu găsești serviciul de care ai nevoie?',
+      ctaDesc: 'Contactează-ne și vom găsi cea mai bună soluție pentru mașina ta.',
     },
     about: {
       title: 'Despre noi',
@@ -61,12 +64,21 @@ const translations = {
       warranty: 'Garanție 3-12 luni la toate serviciile',
       freeCheck: 'Diagnoză gratuită',
       origParts: 'Piese originale și certificate',
-      quickService: 'Serviciu rapid, de regulă în aceeași zi'
+      quickService: 'Serviciu rapid, de regulă în aceeași zi',
+      founded: 'Fondare',
+      clients: 'Clienți',
+      satisfaction: 'Satisfacție',
+      yearsExp: 'Ani experiență',
     },
     gallery: {
       title: 'Galerie',
       subtitle: 'O privire în atelierul nostru și lucrările realizate',
-      all: 'Toate', multimedia: 'Multimedia', audio: 'Audio', electronic: 'Electronică'
+      all: 'Toate', multimedia: 'Multimedia', audio: 'Audio', electronic: 'Electronică',
+      item1: 'Porsche PCM — selecție navigație',
+      item2: 'VW RCD — sistem DAB radio',
+      item3: 'Porsche PCM — unitate reparată',
+      item4: 'Skoda MIB — meniu media',
+      item5: 'VW MIB — navigație GPS activ',
     },
     location: {
       title: 'Locația noastră',
@@ -86,7 +98,13 @@ const translations = {
       message: 'Mesajul tău',
       send: 'Trimite mesajul',
       sending: 'Se trimite...',
-      sent: 'Mesaj trimis! Vă vom contacta în curând.'
+      sent: 'Mesaj trimis! Vă vom contacta în curând.',
+      phoneRequired: 'Telefonul este obligatoriu',
+      messageRequired: 'Mesajul este obligatoriu',
+      photoLabel: 'Fotografie (opțional)',
+      removePhoto: 'Elimină',
+      addPhoto: 'Adaugă fotografie',
+      photoHint: 'JPG, PNG, WEBP — max 5 MB',
     },
     auth: {
       loginTitle: 'Autentificare',
@@ -146,11 +164,24 @@ const translations = {
       save: 'Salvează', cancel: 'Anulează',
       confirmDelete: 'Sigur vrei să ștergi?'
     },
+    features: {
+      exp: '20+ ani experiență', expDesc: 'Tehnicieni cu expertiză vastă în reparații audio și multimedia auto de toate mărcile',
+      diag: 'Diagnoză gratuită', diagDesc: 'Diagnoză gratuită pentru echipamentele aduse demontate, fără costuri ascunse',
+      warranty: 'Garanție 3-12 luni', warrantyDesc: 'Garanție completă la toate lucrările executate, în funcție de complexitate',
+      db: 'Baze de date proprii', dbDesc: 'Deținem baze de date proprietare cu software, dump-uri de memorie și firmware',
+      equip: 'Echipamente moderne', equipDesc: 'Testare modulară cu echipamente profesionale pentru diagnosticare precisă',
+      corp: 'Plată corporativă', corpDesc: 'Acceptăm plata cashless pentru clienți corporativi și persoane juridice',
+    },
+    cta: {
+      title: 'Programează-te acum',
+      desc: 'Contactează-ne și rezolvăm problema ta auto rapid și profesional',
+    },
     common: {
       loading: 'Se încarcă...', error: 'A apărut o eroare', success: 'Succes',
       save: 'Salvează', cancel: 'Anulează', delete: 'Șterge', edit: 'Editează',
       add: 'Adaugă', close: 'Închide', learnMore: 'Află mai mult', back: 'Înapoi',
-      darkMode: 'Mod întunecat', lightMode: 'Mod deschis'
+      darkMode: 'Mod întunecat', lightMode: 'Mod deschis',
+      navigation: 'Navigare', contact: 'Contact', allRights: 'Toate drepturile rezervate.',
     }
   },
   en: {
@@ -177,20 +208,23 @@ const translations = {
     services: {
       title: 'Our Services',
       subtitle: 'We offer complete solutions for your car\'s audio and multimedia systems',
-      multimedia: 'Car Multimedia',
-      multimediaDesc: 'Installation and repair of multimedia systems, GPS navigation, touchscreens',
-      audio: 'Car Audio',
-      audioDesc: 'Speaker, amplifier, subwoofer, premium system repairs',
-      electronic: 'Car Electronics',
-      electronicDesc: 'Diagnostics and repair of electronic modules, CAN bus, interfaces',
-      carplay: 'CarPlay & Android Auto',
-      carplayDesc: 'Wireless CarPlay installation, Android Auto, mirrorlink',
-      oem: 'Premium OEM',
-      oemDesc: 'Upgrade BMW, Audi, Mercedes original systems with OEM components',
-      accessories: 'Accessories',
-      accessoriesDesc: 'Parking cameras, sensors, dash cam, car alarms',
+      multimedia: 'Head Unit & Multimedia Repairs',
+      multimediaDesc: 'Repairs of radio units, head units, displays, touchscreens and control panels',
+      audio: 'Audio Amplifier Repairs',
+      audioDesc: 'Repairs of car amplifiers, speakers and all types of car audio systems',
+      electronic: 'Electronics & Diagnostics',
+      electronicDesc: 'Diagnostics and repair of electronic modules, CAN bus, ECU/BCM',
+      carplay: 'VW/Skoda/Seat MIB Systems',
+      carplayDesc: 'MIB software recovery, touchscreen replacement, map updates, CarPlay/Android Auto',
+      oem: 'Porsche PCM & Premium',
+      oemDesc: 'Porsche PCM repairs, BMW/Audi/Mercedes systems and premium firmware updates',
+      accessories: 'Android Stereo & Firmware',
+      accessoriesDesc: 'Android/Windows stereo repairs, Kia/Hyundai firmware, DVD/Blu-ray and car TVs',
       bookService: 'Book service',
-      learnMore: 'Learn more'
+      learnMore: 'Learn more',
+      brandsTitle: 'Car brands served',
+      ctaTitle: "Can't find the service you need?",
+      ctaDesc: "Contact us and we'll find the best solution for your car.",
     },
     about: {
       title: 'About us',
@@ -213,12 +247,21 @@ const translations = {
       warranty: '3-12 months warranty on all services',
       freeCheck: 'Free diagnostics',
       origParts: 'Original and certified parts',
-      quickService: 'Fast service, usually same day'
+      quickService: 'Fast service, usually same day',
+      founded: 'Founded',
+      clients: 'Clients',
+      satisfaction: 'Satisfaction',
+      yearsExp: 'Years experience',
     },
     gallery: {
       title: 'Gallery',
       subtitle: 'A look at our workshop and completed work',
-      all: 'All', multimedia: 'Multimedia', audio: 'Audio', electronic: 'Electronics'
+      all: 'All', multimedia: 'Multimedia', audio: 'Audio', electronic: 'Electronics',
+      item1: 'Porsche PCM — navigation menu',
+      item2: 'VW RCD — DAB radio system',
+      item3: 'Porsche PCM — repaired unit',
+      item4: 'Skoda MIB — media menu',
+      item5: 'VW MIB — active GPS navigation',
     },
     location: {
       title: 'Our Location',
@@ -238,7 +281,13 @@ const translations = {
       message: 'Your message',
       send: 'Send message',
       sending: 'Sending...',
-      sent: 'Message sent! We\'ll contact you soon.'
+      sent: "Message sent! We'll contact you soon.",
+      phoneRequired: 'Phone number is required',
+      messageRequired: 'Message is required',
+      photoLabel: 'Photo (optional)',
+      removePhoto: 'Remove',
+      addPhoto: 'Add photo',
+      photoHint: 'JPG, PNG, WEBP — max 5 MB',
     },
     auth: {
       loginTitle: 'Login',
@@ -298,11 +347,24 @@ const translations = {
       save: 'Save', cancel: 'Cancel',
       confirmDelete: 'Are you sure you want to delete?'
     },
+    features: {
+      exp: '20+ years experience', expDesc: 'Technicians with vast expertise in car audio and multimedia repairs of all brands',
+      diag: 'Free diagnostics', diagDesc: 'Free diagnostics for dismantled equipment brought in, no hidden costs',
+      warranty: '3-12 month warranty', warrantyDesc: 'Full warranty on all completed work, depending on complexity',
+      db: 'Proprietary databases', dbDesc: 'We hold proprietary databases of software, memory dumps and firmware',
+      equip: 'Modern equipment', equipDesc: 'Modular testing with professional equipment for precise diagnostics',
+      corp: 'Corporate payment', corpDesc: 'We accept cashless payments for corporate clients and legal entities',
+    },
+    cta: {
+      title: 'Book now',
+      desc: 'Contact us and we\'ll fix your car problem fast and professionally',
+    },
     common: {
       loading: 'Loading...', error: 'An error occurred', success: 'Success',
       save: 'Save', cancel: 'Cancel', delete: 'Delete', edit: 'Edit',
       add: 'Add', close: 'Close', learnMore: 'Learn more', back: 'Back',
-      darkMode: 'Dark mode', lightMode: 'Light mode'
+      darkMode: 'Dark mode', lightMode: 'Light mode',
+      navigation: 'Navigation', contact: 'Contact', allRights: 'All rights reserved.',
     }
   },
   ru: {
@@ -329,20 +391,23 @@ const translations = {
     services: {
       title: 'Наши услуги',
       subtitle: 'Предлагаем полные решения для аудио и мультимедиа систем вашего автомобиля',
-      multimedia: 'Автомультимедиа',
-      multimediaDesc: 'Установка и ремонт мультимедиа, GPS навигации, сенсорных экранов',
-      audio: 'Автоаудио',
-      audioDesc: 'Ремонт динамиков, усилителей, сабвуферов, премиум-систем',
-      electronic: 'Автоэлектроника',
-      electronicDesc: 'Диагностика и ремонт электронных модулей, CAN bus, интерфейсов',
-      carplay: 'CarPlay & Android Auto',
-      carplayDesc: 'Установка беспроводного CarPlay, Android Auto, Mirrorlink',
-      oem: 'Премиум OEM',
-      oemDesc: 'Апгрейд систем BMW, Audi, Mercedes компонентами OEM',
-      accessories: 'Аксессуары',
-      accessoriesDesc: 'Камеры парковки, датчики, видеорегистраторы, сигнализации',
+      multimedia: 'Ремонт магнитол и мультимедиа',
+      multimediaDesc: 'Ремонт автомагнитол, head unit, дисплеев, тачскринов и панелей управления',
+      audio: 'Ремонт усилителей и аудио',
+      audioDesc: 'Ремонт автомобильных усилителей, динамиков и аудиосистем всех типов',
+      electronic: 'Электроника и диагностика',
+      electronicDesc: 'Диагностика и ремонт электронных модулей, CAN bus, ECU/BCM',
+      carplay: 'Системы VW/Skoda/Seat MIB',
+      carplayDesc: 'Восстановление ПО MIB, замена тачскрина, обновление карт, CarPlay/Android Auto',
+      oem: 'Porsche PCM и премиум системы',
+      oemDesc: 'Ремонт Porsche PCM, системы BMW/Audi/Mercedes и обновление премиум прошивок',
+      accessories: 'Android магнитолы и прошивки',
+      accessoriesDesc: 'Ремонт Android/Windows магнитол, прошивка Kia/Hyundai, DVD/Blu-ray и автотелевизоры',
       bookService: 'Записаться',
-      learnMore: 'Подробнее'
+      learnMore: 'Подробнее',
+      brandsTitle: 'Обслуживаемые марки автомобилей',
+      ctaTitle: 'Не нашли нужную услугу?',
+      ctaDesc: 'Свяжитесь с нами, и мы найдём лучшее решение для вашего автомобиля.',
     },
     about: {
       title: 'О нас',
@@ -365,12 +430,21 @@ const translations = {
       warranty: 'Гарантия 3-12 месяцев на все услуги',
       freeCheck: 'Бесплатная диагностика',
       origParts: 'Оригинальные и сертифицированные запчасти',
-      quickService: 'Быстрое обслуживание, как правило, в тот же день'
+      quickService: 'Быстрое обслуживание, как правило, в тот же день',
+      founded: 'Основание',
+      clients: 'Клиенты',
+      satisfaction: 'Удовлетворение',
+      yearsExp: 'Лет опыта',
     },
     gallery: {
       title: 'Галерея',
       subtitle: 'Взгляд в нашу мастерскую и выполненные работы',
-      all: 'Все', multimedia: 'Мультимедиа', audio: 'Аудио', electronic: 'Электроника'
+      all: 'Все', multimedia: 'Мультимедиа', audio: 'Аудио', electronic: 'Электроника',
+      item1: 'Porsche PCM — меню навигации',
+      item2: 'VW RCD — система DAB радио',
+      item3: 'Porsche PCM — отремонтированный блок',
+      item4: 'Skoda MIB — меню медиа',
+      item5: 'VW MIB — активная GPS навигация',
     },
     location: {
       title: 'Наше местоположение',
@@ -390,7 +464,13 @@ const translations = {
       message: 'Ваше сообщение',
       send: 'Отправить',
       sending: 'Отправка...',
-      sent: 'Сообщение отправлено! Мы свяжемся с вами в ближайшее время.'
+      sent: 'Сообщение отправлено! Мы свяжемся с вами в ближайшее время.',
+      phoneRequired: 'Телефон обязателен',
+      messageRequired: 'Сообщение обязательно',
+      photoLabel: 'Фото (необязательно)',
+      removePhoto: 'Удалить',
+      addPhoto: 'Добавить фото',
+      photoHint: 'JPG, PNG, WEBP — макс. 5 МБ',
     },
     auth: {
       loginTitle: 'Войти',
@@ -450,11 +530,24 @@ const translations = {
       save: 'Сохранить', cancel: 'Отмена',
       confirmDelete: 'Вы уверены, что хотите удалить?'
     },
+    features: {
+      exp: '20+ лет опыта', expDesc: 'Техники с обширной экспертизой в ремонте автоаудио и мультимедиа всех марок',
+      diag: 'Бесплатная диагностика', diagDesc: 'Бесплатная диагностика для демонтированного оборудования, без скрытых расходов',
+      warranty: 'Гарантия 3-12 месяцев', warrantyDesc: 'Полная гарантия на все выполненные работы, в зависимости от сложности',
+      db: 'Собственные базы данных', dbDesc: 'Располагаем собственными базами ПО, дампов памяти и прошивок',
+      equip: 'Современное оборудование', equipDesc: 'Модульное тестирование профессиональным оборудованием для точной диагностики',
+      corp: 'Корпоративная оплата', corpDesc: 'Принимаем безналичную оплату для корпоративных клиентов и юридических лиц',
+    },
+    cta: {
+      title: 'Записаться сейчас',
+      desc: 'Свяжитесь с нами, и мы быстро и профессионально решим вашу проблему',
+    },
     common: {
       loading: 'Загрузка...', error: 'Произошла ошибка', success: 'Успешно',
       save: 'Сохранить', cancel: 'Отмена', delete: 'Удалить', edit: 'Редактировать',
       add: 'Добавить', close: 'Закрыть', learnMore: 'Подробнее', back: 'Назад',
-      darkMode: 'Тёмный режим', lightMode: 'Светлый режим'
+      darkMode: 'Тёмный режим', lightMode: 'Светлый режим',
+      navigation: 'Навигация', contact: 'Контакты', allRights: 'Все права защищены.',
     }
   },
   cs: {
@@ -481,20 +574,23 @@ const translations = {
     services: {
       title: 'Naše služby',
       subtitle: 'Nabízíme kompletní řešení pro audio a multimediální systémy vašeho auta',
-      multimedia: 'Auto Multimedia',
-      multimediaDesc: 'Instalace a opravy multimediálních systémů, GPS navigace, dotykových obrazovek',
-      audio: 'Auto Audio',
-      audioDesc: 'Opravy reproduktorů, zesilovačů, subwooferů, prémiových systémů',
-      electronic: 'Autoelektronika',
-      electronicDesc: 'Diagnostika a opravy elektronických modulů, CAN bus, rozhraní',
-      carplay: 'CarPlay & Android Auto',
-      carplayDesc: 'Instalace bezdrátového CarPlay, Android Auto, Mirrorlink',
-      oem: 'Prémiové OEM',
-      oemDesc: 'Upgrade systémů BMW, Audi, Mercedes s OEM komponentami',
-      accessories: 'Příslušenství',
-      accessoriesDesc: 'Parkovací kamery, senzory, palubní kamery, autoalarmy',
+      multimedia: 'Opravy autorádií a multimédií',
+      multimediaDesc: 'Opravy autorádií, head unit, displejů, dotykových obrazovek a ovládacích panelů',
+      audio: 'Opravy zesilovačů a audia',
+      audioDesc: 'Opravy automobilových zesilovačů, reproduktorů a audio systémů všech typů',
+      electronic: 'Elektronika a diagnostika',
+      electronicDesc: 'Diagnostika a opravy elektronických modulů, CAN bus, ECU/BCM',
+      carplay: 'Systémy VW/Skoda/Seat MIB',
+      carplayDesc: 'Obnova SW MIB, výměna dotykové obrazovky, aktualizace map, CarPlay/Android Auto',
+      oem: 'Porsche PCM a prémiové systémy',
+      oemDesc: 'Opravy Porsche PCM, systémy BMW/Audi/Mercedes a aktualizace prémiového firmwaru',
+      accessories: 'Android rádia a firmware',
+      accessoriesDesc: 'Opravy Android/Windows autorádií, firmware Kia/Hyundai, DVD/Blu-ray a auto TV',
       bookService: 'Rezervovat',
-      learnMore: 'Více informací'
+      learnMore: 'Více informací',
+      brandsTitle: 'Obsluhované značky aut',
+      ctaTitle: 'Nenašli jste hledanou službu?',
+      ctaDesc: 'Kontaktujte nás a najdeme nejlepší řešení pro vaše auto.',
     },
     about: {
       title: 'O nás',
@@ -517,12 +613,21 @@ const translations = {
       warranty: 'Záruka 3–12 měsíců na všechny služby',
       freeCheck: 'Bezplatná diagnostika',
       origParts: 'Originální a certifikované díly',
-      quickService: 'Rychlá oprava, obvykle tentýž den'
+      quickService: 'Rychlá oprava, obvykle tentýž den',
+      founded: 'Rok vzniku',
+      clients: 'Klienti',
+      satisfaction: 'Spokojenost',
+      yearsExp: 'Let zkušeností',
     },
     gallery: {
       title: 'Galerie',
       subtitle: 'Pohled do naší dílny a dokončených prací',
-      all: 'Vše', multimedia: 'Multimedia', audio: 'Audio', electronic: 'Elektronika'
+      all: 'Vše', multimedia: 'Multimedia', audio: 'Audio', electronic: 'Elektronika',
+      item1: 'Porsche PCM — menu navigace',
+      item2: 'VW RCD — systém DAB rádio',
+      item3: 'Porsche PCM — opravená jednotka',
+      item4: 'Skoda MIB — menu médií',
+      item5: 'VW MIB — aktivní GPS navigace',
     },
     location: {
       title: 'Naše poloha',
@@ -542,7 +647,13 @@ const translations = {
       message: 'Vaše zpráva',
       send: 'Odeslat zprávu',
       sending: 'Odesílání...',
-      sent: 'Zpráva odeslána! Brzy vás kontaktujeme.'
+      sent: 'Zpráva odeslána! Brzy vás kontaktujeme.',
+      phoneRequired: 'Telefon je povinný',
+      messageRequired: 'Zpráva je povinná',
+      photoLabel: 'Fotografie (volitelné)',
+      removePhoto: 'Odstranit',
+      addPhoto: 'Přidat fotku',
+      photoHint: 'JPG, PNG, WEBP — max 5 MB',
     },
     auth: {
       loginTitle: 'Přihlášení',
@@ -602,11 +713,24 @@ const translations = {
       save: 'Uložit', cancel: 'Zrušit',
       confirmDelete: 'Opravdu chcete smazat?'
     },
+    features: {
+      exp: '20+ let zkušeností', expDesc: 'Technici s rozsáhlými znalostmi v opravách autoaudia a multimédií všech značek',
+      diag: 'Bezplatná diagnostika', diagDesc: 'Bezplatná diagnostika pro demontované zařízení, bez skrytých nákladů',
+      warranty: 'Záruka 3-12 měsíců', warrantyDesc: 'Plná záruka na všechny provedené práce, v závislosti na složitosti',
+      db: 'Vlastní databáze', dbDesc: 'Disponujeme vlastními databázemi softwaru, paměťových dumpů a firmwarů',
+      equip: 'Moderní vybavení', equipDesc: 'Modulární testování profesionálním vybavením pro přesnou diagnostiku',
+      corp: 'Firemní platby', corpDesc: 'Přijímáme bezhotovostní platby pro firemní klienty a právnické osoby',
+    },
+    cta: {
+      title: 'Rezervovat nyní',
+      desc: 'Kontaktujte nás a rychle a profesionálně vyřešíme váš problém s autem',
+    },
     common: {
       loading: 'Načítání...', error: 'Vyskytla se chyba', success: 'Úspěch',
       save: 'Uložit', cancel: 'Zrušit', delete: 'Smazat', edit: 'Upravit',
       add: 'Přidat', close: 'Zavřít', learnMore: 'Více informací', back: 'Zpět',
-      darkMode: 'Tmavý režim', lightMode: 'Světlý režim'
+      darkMode: 'Tmavý režim', lightMode: 'Světlý režim',
+      navigation: 'Navigace', contact: 'Kontakt', allRights: 'Všechna práva vyhrazena.',
     }
   }
 };

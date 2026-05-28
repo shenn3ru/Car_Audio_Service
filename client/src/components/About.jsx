@@ -54,15 +54,15 @@ export default function About() {
               <div className="story-highlights">
                 <div className="highlight">
                   <strong>2004</strong>
-                  <span>Fondare</span>
+                  <span>{a.founded}</span>
                 </div>
                 <div className="highlight">
                   <strong>5000+</strong>
-                  <span>Clienți</span>
+                  <span>{a.clients}</span>
                 </div>
                 <div className="highlight">
                   <strong>100%</strong>
-                  <span>Satisfacție</span>
+                  <span>{a.satisfaction}</span>
                 </div>
               </div>
             </div>
@@ -73,7 +73,7 @@ export default function About() {
               />
               <div className="image-badge">
                 <span>20+</span>
-                <span>Ani experiență</span>
+                <span>{a.yearsExp}</span>
               </div>
             </div>
           </div>

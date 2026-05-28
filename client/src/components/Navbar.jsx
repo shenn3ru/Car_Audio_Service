@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
 import { useLang } from '../context/LangContext';
@@ -14,6 +14,7 @@ export default function Navbar() {
   const { theme, toggleTheme } = useTheme();
   const location = useLocation();
   const navigate = useNavigate();
+  const langRef = useRef(null);
 
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 20);
@@ -23,6 +24,16 @@ export default function Navbar() {
 
   useEffect(() => { setMenuOpen(false); }, [location]);
 
+  useEffect(() => {
+    function handleClickOutside(e) {
+      if (langRef.current && !langRef.current.contains(e.target)) {
+        setLangOpen(false);
+      }
+    }
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => document.removeEventListener('mousedown', handleClickOutside);
+  }, []);
+
   async function handleLogout() {
     await logout();
     navigate('/');
@@ -31,9 +42,9 @@ export default function Navbar() {
   const navLinks = [
     { path: '/', label: t.nav.home },
     { path: '/services', label: t.nav.services },
-    { path: '/about', label: t.nav.about },
     { path: '/gallery', label: t.nav.gallery },
     { path: '/location', label: t.nav.location },
+    { path: '/about', label: t.nav.about },
   ];
 
   const langs = [
@@ -64,12 +75,12 @@ export default function Navbar() {
 
         <div className="navbar-actions">
           {/* Theme toggle */}
-          <button className="icon-btn" onClick={toggleTheme} title={theme === 'dark' ? t.common.lightMode : t.common.darkMode}>
-            {theme === 'dark' ? 'L' : 'D'}
+          <button className="icon-btn theme-btn" onClick={toggleTheme} title={theme === 'dark' ? t.common.lightMode : t.common.darkMode}>
+            {theme === 'dark' ? '☀' : '☾'}
           </button>
 
           {/* Language switcher */}
-          <div className="lang-switcher" onMouseLeave={() => setLangOpen(false)}>
+          <div className="lang-switcher" ref={langRef}>
             <button className="lang-btn" onClick={() => setLangOpen(!langOpen)}>
               {lang.toUpperCase()} <span className="chevron">▾</span>
             </button>
