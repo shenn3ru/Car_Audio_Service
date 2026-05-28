@@ -1,6 +1,7 @@
 import { initializeApp } from "firebase/app";
 import { getFirestore } from "firebase/firestore";
 import { getAuth } from 'firebase/auth';
+import { getStorage } from 'firebase/storage';
 const firebaseConfig = {
   apiKey: "AIzaSyApbPEKAGJ484J9wJkFSUGiynaJcr_JOJs",
   authDomain: "car-audio-service.firebaseapp.com",
@@ -11,9 +12,8 @@ const firebaseConfig = {
   measurementId: "G-XCNB22Z6F4"
 };
 
-// Initialize Firebase
 const app = initializeApp(firebaseConfig);
 export const auth = getAuth(app);
-// Export the database instance
 export const db = getFirestore(app);
+export const storage = getStorage(app);
 export default app;

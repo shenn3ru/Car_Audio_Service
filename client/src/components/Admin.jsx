@@ -10,6 +10,15 @@ const TABS = ['services', 'users', 'messages'];
 
 const emptyService = { name: '', category: 'multimedia', description: '', priceFrom: '', warranty: '' };
 
+const DEFAULT_SERVICES = [
+  { name: 'Reparații unități & multimedia', category: 'multimedia', priceFrom: '200', warranty: '3-12 luni', description: 'Reparații unități radio, head unit, display-uri, touchscreen și panouri de comandă.' },
+  { name: 'Reparații amplificatoare audio', category: 'audio', priceFrom: '150', warranty: '3-6 luni', description: 'Reparații amplificatoare auto, difuzoare și sisteme audio de toate tipurile.' },
+  { name: 'Electronică & diagnosticare', category: 'electronic', priceFrom: '250', warranty: '6 luni', description: 'Diagnosticare și reparații module electronice, CAN bus, ECU/BCM. Baze de date firmware proprietare.' },
+  { name: 'Sisteme VW/Skoda/Seat MIB', category: 'carplay', priceFrom: '300', warranty: '6-12 luni', description: 'Recuperare software MIB/MIB2, înlocuire touchscreen, actualizare hărți, activare CarPlay & Android Auto.' },
+  { name: 'Porsche PCM & Premium', category: 'oem', priceFrom: '500', warranty: '6-12 luni', description: 'Reparații Porsche PCM 2/3/4/5, sisteme BMW/Audi/Mercedes, actualizare firmware premium.' },
+  { name: 'Android Auto & Firmware', category: 'accessories', priceFrom: '100', warranty: '3-6 luni', description: 'Reparații stereo Android/Windows, firmware Kia & Hyundai, DVD/Blu-ray, televizoare Samsung/LG.' },
+];
+
 export default function Admin() {
   const { t } = useLang();
   const a = t.admin;
@@ -27,8 +36,25 @@ export default function Admin() {
   const [saving, setSaving] = useState(false);
   const [confirmDelete, setConfirmDelete] = useState(null);
   const [toast, setToast] = useState(null);
+  const [seeding, setSeeding] = useState(false);
 
   useEffect(() => { loadData(); }, [tab]);
+
+  async function seedDefaultServices() {
+    setSeeding(true);
+    try {
+      const now = new Date().toISOString();
+      for (const s of DEFAULT_SERVICES) {
+        await addDoc(collection(db, 'services'), { ...s, createdAt: now });
+      }
+      showToast('Servicii implicite adăugate!');
+      loadData();
+    } catch (e) {
+      console.error(e);
+      showToast('Eroare la populare!', 'error');
+    }
+    setSeeding(false);
+  }
 
   async function loadData() {
     setLoading(true);
@@ -135,9 +161,21 @@ export default function Admin() {
             {tab !== 'messages' && (
               <div className="admin-toolbar">
                 <h3>{tab === 'services' ? a.services : a.users}</h3>
-                <button className="btn btn-primary btn-sm" onClick={openAdd}>
-                  + {tab === 'services' ? a.addService : a.addUser}
-                </button>
+                <div style={{ display: 'flex', gap: 8 }}>
+                  {tab === 'services' && services.length === 0 && (
+                    <button
+                      className="btn btn-outline btn-sm"
+                      onClick={seedDefaultServices}
+                      disabled={seeding}
+                      title="Populează cu cele 6 servicii implicite"
+                    >
+                      {seeding ? '...' : '⚡ Populează implicit'}
+                    </button>
+                  )}
+                  <button className="btn btn-primary btn-sm" onClick={openAdd}>
+                    + {tab === 'services' ? a.addService : a.addUser}
+                  </button>
+                </div>
               </div>
             )}
 
@@ -160,7 +198,7 @@ export default function Admin() {
                       </thead>
                       <tbody>
                         {services.length === 0 && (
-                          <tr><td colSpan={5} className="empty-row">Niciun serviciu. Adaugă primul!</td></tr>
+                          <tr><td colSpan={5} className="empty-row">Niciun serviciu. Apasă „⚡ Populează implicit" sau adaugă manual.</td></tr>
                         )}
                         {services.map(s => (
                           <tr key={s.id}>
@@ -248,6 +286,15 @@ export default function Admin() {
                           </div>
                         </div>
                         <p className="msg-body">{m.message}</p>
+                        {m.imageUrl && (
+                          <a href={m.imageUrl} target="_blank" rel="noreferrer">
+                            <img
+                              src={m.imageUrl}
+                              alt="Fotografie client"
+                              style={{ marginTop: 10, maxWidth: '100%', maxHeight: 240, objectFit: 'cover', borderRadius: 8, border: '1px solid var(--border)', display: 'block' }}
+                            />
+                          </a>
+                        )}
                       </div>
                     ))}
                   </div>

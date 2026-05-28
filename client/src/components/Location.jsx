@@ -1,47 +1,100 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import { collection, addDoc } from 'firebase/firestore';
-import { db } from '../firebase/firebase';
+import { ref, uploadBytes, getDownloadURL } from 'firebase/storage';
+import emailjs from '@emailjs/browser';
+import { db, storage } from '../firebase/firebase';
 import { useLang } from '../context/LangContext';
 import '../styles/Location.css';
 
+const EMAILJS_SERVICE_ID  = import.meta.env.VITE_EMAILJS_SERVICE_ID;
+const EMAILJS_TEMPLATE_ID = import.meta.env.VITE_EMAILJS_TEMPLATE_ID;
+const EMAILJS_PUBLIC_KEY  = import.meta.env.VITE_EMAILJS_PUBLIC_KEY;
+
 function validate(form, t) {
   const errors = {};
-  if (!form.name.trim()) errors.name = t.auth.errors.nameRequired;
-  if (!form.phone.trim()) errors.phone = 'Telefonul este obligatoriu';
-  if (!form.message.trim()) errors.message = 'Mesajul este obligatoriu';
+  if (!form.name.trim())    errors.name    = t.auth.errors.nameRequired;
+  if (!form.phone.trim())   errors.phone   = t.location.phoneRequired;
+  if (!form.message.trim()) errors.message = t.location.messageRequired;
   return errors;
 }
 
 export default function Location() {
   const { t } = useLang();
   const l = t.location;
-  const [form, setForm] = useState({ name: '', phone: '', message: '' });
-  const [errors, setErrors] = useState({});
-  const [status, setStatus] = useState('idle'); // idle | sending | sent | error
+  const fileInputRef = useRef(null);
+
+  const [form, setForm]       = useState({ name: '', phone: '', message: '' });
+  const [errors, setErrors]   = useState({});
+  const [status, setStatus]   = useState('idle');
+  const [imageFile, setImageFile]     = useState(null);
+  const [imagePreview, setImagePreview] = useState(null);
+
+  function handleChange(e) {
+    const { name, value } = e.target;
+    setForm(prev => ({ ...prev, [name]: value }));
+    if (errors[name]) setErrors(prev => ({ ...prev, [name]: '' }));
+  }
+
+  function handleFileChange(e) {
+    const file = e.target.files[0];
+    if (!file) return;
+    setImageFile(file);
+    setImagePreview(URL.createObjectURL(file));
+  }
+
+  function removeImage() {
+    setImageFile(null);
+    setImagePreview(null);
+    if (fileInputRef.current) fileInputRef.current.value = '';
+  }
 
   async function handleSubmit(e) {
     e.preventDefault();
     const errs = validate(form, t);
     if (Object.keys(errs).length) { setErrors(errs); return; }
     setStatus('sending');
+
     try {
+      // 1. Upload imagine în Firebase Storage (dacă există)
+      let imageUrl = '';
+      if (imageFile) {
+        const storageRef = ref(storage, `messages/${Date.now()}_${imageFile.name}`);
+        await uploadBytes(storageRef, imageFile);
+        imageUrl = await getDownloadURL(storageRef);
+      }
+
+      // 2. Salvare mesaj în Firestore
       await addDoc(collection(db, 'messages'), {
         ...form,
+        imageUrl,
         createdAt: new Date().toISOString(),
-        read: false
+        read: false,
       });
+
+      // 3. Trimitere email notificare via EmailJS
+      if (EMAILJS_SERVICE_ID && EMAILJS_SERVICE_ID !== 'your_service_id') {
+        await emailjs.send(
+          EMAILJS_SERVICE_ID,
+          EMAILJS_TEMPLATE_ID,
+          {
+            from_name:  form.name,
+            phone:      form.phone,
+            message:    form.message,
+            image_url:  imageUrl || 'Nicio imagine atașată',
+            reply_to:   'noreply@car-audio-service.info',
+          },
+          EMAILJS_PUBLIC_KEY
+        );
+      }
+
       setStatus('sent');
       setForm({ name: '', phone: '', message: '' });
+      setImageFile(null);
+      setImagePreview(null);
     } catch (err) {
       console.error(err);
       setStatus('error');
     }
-  }
-
-  function handleChange(e) {
-    const { name, value } = e.target;
-    setForm(prev => ({ ...prev, [name]: value }));
-    if (errors[name]) setErrors(prev => ({ ...prev, [name]: '' }));
   }
 
   return (
@@ -83,13 +136,13 @@ export default function Location() {
 
               <div className="info-card card">
                 <h4>{l.email}</h4>
-                <p><a href="mailto:soimu.service@gmail.com">soimu.service@gmail.com</a></p>
+                <p><a href="mailto:remont.magnitol@gmail.com">remont.magnitol@gmail.com</a></p>
               </div>
 
               <div className="info-card card hours-card">
                 <h4>{l.hours}</h4>
                 <div className="hours-row">
-                  <span>{l.monFri}</span><strong>09:00 - 18:00</strong>
+                  <span>{l.monFri}</span><strong>09:00 - 19:00</strong>
                 </div>
                 <div className="hours-row">
                   <span>{l.sat}</span><strong>09:00 - 15:00</strong>
@@ -102,7 +155,6 @@ export default function Location() {
 
             {/* MAP + FORM */}
             <div className="location-main fade-up fade-up-2">
-              {/* GOOGLE MAP */}
               <div className="map-container">
                 <iframe
                   title="Locație Car Audio Service"
@@ -119,10 +171,12 @@ export default function Location() {
               {/* CONTACT FORM */}
               <div className="contact-form-card card">
                 <h3>{l.contactForm}</h3>
+
                 {status === 'sent' ? (
                   <div className="success-msg">✅ {l.sent}</div>
                 ) : (
                   <form onSubmit={handleSubmit} noValidate>
+                    {/* Nume */}
                     <div className="form-group">
                       <label>{l.name}</label>
                       <input
@@ -134,6 +188,8 @@ export default function Location() {
                       />
                       {errors.name && <span className="error-text">{errors.name}</span>}
                     </div>
+
+                    {/* Telefon */}
                     <div className="form-group">
                       <label>{l.phone2}</label>
                       <input
@@ -145,6 +201,8 @@ export default function Location() {
                       />
                       {errors.phone && <span className="error-text">{errors.phone}</span>}
                     </div>
+
+                    {/* Mesaj */}
                     <div className="form-group">
                       <label>{l.message}</label>
                       <textarea
@@ -157,10 +215,48 @@ export default function Location() {
                       />
                       {errors.message && <span className="error-text">{errors.message}</span>}
                     </div>
-                    <button className="btn btn-primary" type="submit" disabled={status === 'sending'} style={{ width: '100%' }}>
+
+                    {/* Upload poză */}
+                    <div className="form-group">
+                      <label>{l.photoLabel}</label>
+                      {imagePreview ? (
+                        <div className="image-preview-wrap">
+                          <img src={imagePreview} alt="preview" className="image-preview" />
+                          <button
+                            type="button"
+                            className="remove-image-btn"
+                            onClick={removeImage}
+                          >
+                            ✕ {l.removePhoto}
+                          </button>
+                        </div>
+                      ) : (
+                        <label className="file-upload-label">
+                          <input
+                            ref={fileInputRef}
+                            type="file"
+                            accept="image/*"
+                            onChange={handleFileChange}
+                            style={{ display: 'none' }}
+                          />
+                          <span className="file-upload-btn">📷 {l.addPhoto}</span>
+                          <span className="file-upload-hint">{l.photoHint}</span>
+                        </label>
+                      )}
+                    </div>
+
+                    <button
+                      className="btn btn-primary"
+                      type="submit"
+                      disabled={status === 'sending'}
+                      style={{ width: '100%' }}
+                    >
                       {status === 'sending' ? l.sending : l.send}
                     </button>
-                    {status === 'error' && <p className="error-text" style={{ marginTop: 8 }}>{t.common.error}</p>}
+
+                    {status === 'error' && (
+                      <p className="error-text" style={{ marginTop: 8 }}>{t.common.error}</p>
+                    )}
                   </form>
                 )}
               </div>
