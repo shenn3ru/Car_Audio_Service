@@ -228,7 +228,7 @@
   /* Hide login button, keep only register/avatar */
   .auth-btns .btn-ghost { display: none; }
   /* Hide admin button in user menu on very small screens */
-  .user-menu .btn-outline { display: none; }
+  .user-menu .admin-nav-btn { display: none; }
   /* Hide logout text, show only avatar */
   .user-menu .btn-ghost { display: none; }
 }

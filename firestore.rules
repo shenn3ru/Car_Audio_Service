@@ -1,0 +1,28 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    function isAdmin() {
+      return request.auth != null &&
+        request.auth.token.email == 'soimu.ecaterina06@gmail.com';
+    }
+
+    // Servicii — citire publică, scriere/ștergere doar admin
+    match /services/{id} {
+      allow read: if true;
+      allow create, update, delete: if isAdmin();
+    }
+
+    // Utilizatori — fiecare citește/scrie propriul document, adminul vede tot
+    match /users/{userId} {
+      allow read, write: if request.auth != null && request.auth.uid == userId;
+      allow read, write, delete: if isAdmin();
+    }
+
+    // Mesaje — oricine autentificat poate crea, adminul poate citi/actualiza/șterge
+    match /messages/{id} {
+      allow create: if request.auth != null;
+      allow read, update, delete: if isAdmin();
+    }
+  }
+}

@@ -9,7 +9,7 @@ export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
   const [langOpen, setLangOpen] = useState(false);
-  const { currentUser, userProfile, logout } = useAuth();
+  const { currentUser, userProfile, isAdmin, logout } = useAuth();
   const { lang, changeLang, t } = useLang();
   const { theme, toggleTheme } = useTheme();
   const location = useLocation();
@@ -106,8 +106,8 @@ export default function Navbar() {
               <Link to="/profile" className="user-avatar" title={t.nav.profile}>
                 {(userProfile?.name || currentUser.displayName || 'U').charAt(0).toUpperCase()}
               </Link>
-              {userProfile?.role === 'admin' && (
-                <Link to="/admin" className="btn btn-outline btn-sm">{t.nav.admin}</Link>
+              {isAdmin && (
+                <Link to="/admin" className="btn btn-primary btn-sm admin-nav-btn">{t.nav.admin}</Link>
               )}
               <button className="btn btn-ghost btn-sm" onClick={handleLogout}>{t.nav.logout}</button>
             </div>

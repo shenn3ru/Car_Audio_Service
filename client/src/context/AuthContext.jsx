@@ -105,7 +105,9 @@ export function AuthProvider({ children }) {
     return unsubscribe;
   }, []);
 
-  const value = { currentUser, userProfile, register, login, logout, resetPassword, loginWithGoogle, fetchUserProfile };
+  const isAdmin = currentUser?.email === 'soimu.ecaterina06@gmail.com' || userProfile?.role === 'admin';
+
+  const value = { currentUser, userProfile, isAdmin, register, login, logout, resetPassword, loginWithGoogle, fetchUserProfile };
 
   return (
     <AuthContext.Provider value={value}>
