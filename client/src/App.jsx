@@ -24,8 +24,8 @@ function PrivateRoute({ children }) {
 
 // Rută protejată exclusiv pentru conturile de administrator
 function AdminRoute({ children }) {
-  const { userProfile } = useAuth();
-  return userProfile?.role === 'admin' ? children : <Navigate to="/" />;
+  const { isAdmin } = useAuth();
+  return isAdmin ? children : <Navigate to="/" />;
 }
 
 // Structura internă a aplicației (Navbar, Conținutul Rutelor și Footer)
